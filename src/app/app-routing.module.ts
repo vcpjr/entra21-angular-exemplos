@@ -4,11 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'vacinas', pathMatch: 'full' },
   {
-     path: 'vacinas',
-     loadChildren:() => import('./vacinas/vacinas.module').then(m => m.VacinasModule)
+    path: 'vacinas',
+    loadChildren: () => import('./vacinas/vacinas.module').then(m => m.VacinasModule)
   }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

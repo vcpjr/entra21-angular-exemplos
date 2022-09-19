@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { AppMaterialModule } from './../shared/app-material/app-material.module';
 
-import { VacinasRoutingModule } from './vacinas-routing.module';
 import { VacinaListagemComponent } from './vacina-listagem/vacina-listagem.component';
-import { MatTableModule } from '@angular/material/table';
+import { VacinasRoutingModule } from './vacinas-routing.module';
 
 
 @NgModule({
@@ -13,7 +13,7 @@ import { MatTableModule } from '@angular/material/table';
   imports: [
     CommonModule,
     VacinasRoutingModule,
-    MatTableModule
+    AppMaterialModule
   ]
 })
 export class VacinasModule { }

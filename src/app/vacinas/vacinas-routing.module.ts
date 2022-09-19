@@ -1,9 +1,9 @@
+import { VacinaListagemComponent } from './vacina-listagem/vacina-listagem.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { VacinaListagemComponent } from './vacina-listagem/vacina-listagem.component';
 
 const routes: Routes = [
-  {path: 'lista', component: VacinaListagemComponent}
+  { path: '', component: VacinaListagemComponent},
 ];
 
 @NgModule({

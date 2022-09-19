@@ -1,18 +1,6 @@
+import { VacinasService } from './../../shared/service/vacinas.service';
 import { Component, OnInit } from '@angular/core';
-
-//Futuramente vamos criar um arquivo separado para as entidades
-export interface Vacina {
-  id: number;
-  paisOrigem: string;
-}
-
-//Futuramente vamos obter esses dados diretamente do backend
-const VACINAS_MOCK: Vacina[] = [
-  { id: 1, paisOrigem: 'Brasil'},
-  { id: 2, paisOrigem: 'Argentina'},
-  { id: 3, paisOrigem: 'Chile'},
-  { id: 4, paisOrigem: 'Paraguai'},
-];
+import { Vacina } from 'src/app/shared/model/vacina';
 
 @Component({
   selector: 'app-vacina-listagem',
@@ -21,12 +9,24 @@ const VACINAS_MOCK: Vacina[] = [
 })
 export class VacinaListagemComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'paisOrigem'];
-  dataSource = VACINAS_MOCK;
-
-  constructor() { }
+  displayedColumns: string[] = ['id', 'paisOrigem', 'estagio', 'dataInicio', 'responsavel'];
+  public dataSource: Array<Vacina> = new Array();
+  constructor(private vacinaService: VacinasService) { }
 
   ngOnInit(): void {
-    //TODO consultar no backend
+    //Similar ao método main() em Java
+    this.buscarVacinas();
+  }
+
+  private buscarVacinas(){
+    this.vacinaService.listarTodas().subscribe(
+      resultado => {
+        this.dataSource = resultado;
+      },
+      erro => {
+        //TODO evoluir para mostrar mensagem na tela
+        console.log("DEU ERRO. Causa: " + erro);
+      }
+    );
   }
 }
