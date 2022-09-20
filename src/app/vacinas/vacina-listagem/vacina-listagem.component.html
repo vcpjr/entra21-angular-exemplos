@@ -35,10 +35,10 @@
 
 <section>
   <div class="example-button-row">
-      <button mat-flat-button color="primary">Buscar todas</button>
-      <button mat-flat-button color="accent">Buscar por id</button>
-      <button mat-flat-button color="accent">Buscar por pesquisador</button>
-      <button mat-flat-button color="warn">Voltar</button>
+      <button mat-flat-button color="primary" (click)="buscarVacinas()">Buscar todas</button>
+      <button mat-flat-button color="accent"  (click)="buscarPorId()">Buscar por id</button>
+      <button mat-flat-button color="accent"  (click)="buscarPorPesquisador()">Buscar por pesquisador</button>
+      <button mat-flat-button color="warn"    (click)="voltar()">Voltar</button>
   </div>
 </section>
 
