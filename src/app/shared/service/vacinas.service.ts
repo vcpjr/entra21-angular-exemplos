@@ -14,4 +14,8 @@ export class VacinasService {
   listarTodas(): Observable<Vacina[]>{
     return this.httpClient.get<Vacina[]>(this.API); 
   }
+
+  salvar(vacina: Vacina): Observable<Vacina>{
+    return this.httpClient.post<Vacina>(this.API, vacina); 
+  }
 }
