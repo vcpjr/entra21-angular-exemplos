@@ -3,6 +3,7 @@ import { PesquisadorService } from './../../shared/service/pesquisador.service';
 import { Pesquisador } from './../../shared/model/pesquisador';
 import { Vacina } from './../../shared/model/vacina';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vacina-detalhe',
@@ -11,16 +12,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VacinaDetalheComponent implements OnInit {
 
+  public idVacina: number;
   public vacina: Vacina = new Vacina();
   public pesquisadores: Pesquisador[] = new Array();
 
   constructor(private pesquisadorService: PesquisadorService, 
-              private vacinasService: VacinasService) { }
+              private vacinasService: VacinasService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     //TODO verificar se a rota chamada tem id
     //caso sim -> buscar a vacina no backend
     this.buscarPesquisadores();
+
+    this.route.params.subscribe(params => {
+      //TODO testar
+      this.idVacina = params['id'];
+
+      if(this.idVacina){
+        this.buscarVacina();
+      }
+    });
+  }
+
+  buscarVacina(){
+    this.vacinasService.buscarPorId(this.idVacina).subscribe(
+      resultado => {
+        if(resultado){
+          this.vacina = resultado;
+        }else{
+          //TODO evoluir essa mensagem
+          alert('Vacina não encontrada');
+        }
+      },
+      erro => {
+        //TODO evoluir para mostrar mensagem na tela
+        console.log("DEU ERRO. Causa: " + erro);
+      }
+    );
   }
 
   buscarPesquisadores(){
