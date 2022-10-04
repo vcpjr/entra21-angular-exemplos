@@ -22,4 +22,8 @@ export class VacinasService {
   salvar(vacina: Vacina): Observable<Vacina>{
     return this.httpClient.post<Vacina>(this.API, vacina); 
   }
+
+  atualizar(vacina: Vacina): Observable<Vacina>{
+    return this.httpClient.put<Vacina>(this.API, vacina); 
+  }
 }

@@ -11,6 +11,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+
 import { FormsModule } from '@angular/forms';
 @NgModule({
   exports: [
@@ -26,6 +28,7 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatRadioModule,
     MatSelectModule,
+    MatIconModule,
     FormsModule
   ]
 })

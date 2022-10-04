@@ -10,7 +10,7 @@ import { VacinasService } from './../../shared/service/vacinas.service';
 })
 export class VacinaListagemComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'paisOrigem', 'estagio', 'dataInicio', 'responsavel'];
+  displayedColumns: string[] = ['id', 'paisOrigem', 'estagio', 'dataInicio', 'responsavel', 'acoes'];
   public dataSource: Array<Vacina> = new Array();
   constructor(private vacinaService: VacinasService, private router: Router) { }
 
@@ -30,6 +30,17 @@ export class VacinaListagemComponent implements OnInit {
       }
     );
   }
+
+  public editarVacina(vacinaSelecionada: Vacina){
+    this.router.navigate(['vacinas/detalhe/' + vacinaSelecionada.id]);
+  }
+
+  public excluirVacina(vacinaSelecionada: Vacina){
+    //TODO pedir confirmação
+
+    //Caso o usuário confirme, chamar o vacinaService, método excluir,
+    //passando o id da vacinaSelecionada
+  } 
 
   public buscarPorId(){
     //TODO

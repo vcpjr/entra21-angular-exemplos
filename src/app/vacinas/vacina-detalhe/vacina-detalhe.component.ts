@@ -21,12 +21,9 @@ export class VacinaDetalheComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //TODO verificar se a rota chamada tem id
-    //caso sim -> buscar a vacina no backend
     this.buscarPesquisadores();
 
     this.route.params.subscribe(params => {
-      //TODO testar
       this.idVacina = params['id'];
 
       if(this.idVacina){
@@ -65,22 +62,37 @@ export class VacinaDetalheComponent implements OnInit {
   }
 
   salvar(){
-    this.vacinasService.salvar(this.vacina).subscribe(
-      resultado => {
-        this.vacina = resultado;
-        //TODO evoluir para mostrar mensagem na tela
-        alert("Vacina salva com sucesso");
-        this.limpar();
-      },
-      erro => {
-        //TODO evoluir para mostrar mensagem na tela
-        console.log("DEU ERRO. Causa: " + erro);
-        alert("Erro: " + erro.error.message);
-      }
-    );
+    if(this.idVacina){
+      this.vacinasService.salvar(this.vacina).subscribe(
+        resultado => {
+          this.vacina = resultado;
+          alert("Vacina SALVA com sucesso");
+          this.limpar();
+        },
+        erro => {
+          alert("Erro: " + erro.error.message);
+        }
+      );
+    }else{
+      this.vacinasService.atualizar(this.vacina).subscribe(
+        resultado => {
+          this.vacina = resultado;
+          alert("Vacina ATUALIZADA com sucesso");
+          this.limpar();
+        },
+        erro => {
+          alert("Erro: " + erro.error.message);
+        }
+      );
+    }
   }
 
   limpar(){
     this.vacina = new Vacina();
   }
+
+  compararObjetos(o1: any, o2: any): boolean {
+    return o1.name === o2.name && o1.id === o2.id;
+  }
+
 }
